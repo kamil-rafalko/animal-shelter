@@ -16,6 +16,11 @@ class DogRegistryController(private val dogRegistryService: DogRegistryService) 
             dogRegistryService.addDog(dogDto)
                 .let { ResponseEntity(it, HttpStatus.CREATED) }
 
+    @DeleteMapping("/{id}")
+    fun deleteDog(@PathVariable id: String): ResponseEntity<Void> =
+        dogRegistryService.deleteDog(id)
+                .let { ResponseEntity(HttpStatus.NO_CONTENT) }
+
     @GetMapping
     fun getDogs(): List<DogDto> = dogRegistryService.getDogs()
 

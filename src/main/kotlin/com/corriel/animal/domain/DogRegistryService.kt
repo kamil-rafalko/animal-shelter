@@ -12,6 +12,10 @@ class DogRegistryService(private val dogRepository: DogRepository) {
         return dog.toDto()
     }
 
+    fun deleteDog(id: String) {
+        dogRepository.delete(id.toLong())
+    }
+
     fun getDogs(): List<DogDto> =
             dogRepository.findAll()
                     .map { it.toDto() }
