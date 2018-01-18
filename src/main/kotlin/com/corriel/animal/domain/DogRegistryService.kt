@@ -12,6 +12,13 @@ class DogRegistryService(private val dogRepository: DogRepository) {
         return dog.toDto()
     }
 
+    fun updateDog(id: String, dto: DogDto): DogDto {
+        val dog = Dog.fromDto(dto)
+        val dogWithId = dog.copy(id = id.toLong())
+        dogRepository.save(dogWithId)
+        return dogWithId.toDto()
+    }
+
     fun deleteDog(id: String) {
         dogRepository.delete(id.toLong())
     }
